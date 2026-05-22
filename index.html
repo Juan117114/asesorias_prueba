@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Asesoría Disciplinar y Mentoría Académica – FI UAEMex</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--bg:#0a0f1e;--surf:#0f172a;--card:#1e293b;--cardh:#243447;--inp:#0f172a;--bi:#000;--bc:#1e3a5f;--ac:#3b82f6;--al:#60a5fa;--ad:#1d4ed8;--tp:#e2e8f0;--ts:#94a3b8;--tm:#64748b;--ok:#22c55e;--er:#ef4444;--wa:#f59e0b}
+*{box-sizing:border-box;margin:0;padding:0}html,body{background:var(--bg);color:var(--tp);font-family:system-ui,-apple-system,sans-serif;min-height:100vh}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--surf)}::-webkit-scrollbar-thumb{background:var(--ad);border-radius:3px}
+.hidden{display:none!important}.view{display:none;flex-direction:column;min-height:100vh}.view.active{display:flex}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sp{to{transform:rotate(360deg)}}
+@keyframes pb{0%,100%{box-shadow:0 0 0 0 rgba(59,130,246,.4)}50%{box-shadow:0 0 0 8px rgba(59,130,246,0)}}
+.fi{animation:fi .3s ease both}
+#view-login{background:radial-gradient(ellipse at 60% 15%,#1e3a5f,var(--bg) 65%);align-items:center;justify-content:center;padding:1.5rem}
+.lcard{background:var(--card);border:1px solid var(--bc);border-radius:1.2rem;padding:2.4rem 2rem;width:100%;max-width:420px;box-shadow:0 25px 60px rgba(0,0,0,.55)}
+.flbl{display:block;font-size:.74rem;font-weight:700;color:var(--ts);margin-bottom:.28rem;text-transform:uppercase;letter-spacing:.06em}
+.finp{width:100%;background:var(--inp);border:2px solid var(--bi);border-radius:.5rem;color:var(--tp);padding:.58rem .82rem;font-size:.9rem;outline:none;transition:border-color .2s}
+.finp:focus{border-color:var(--ac)}.finp::placeholder{color:var(--tm)}
+.fg{display:flex;flex-direction:column;gap:.28rem;margin-bottom:.82rem}
+.ferr{font-size:.74rem;color:var(--er);margin-top:.12rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.38rem;border:none;border-radius:.5rem;font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s;padding:.58rem 1.05rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.bp{background:var(--ac);color:#fff}.bp:hover:not(:disabled){background:var(--al)}
+.bs{background:transparent;color:var(--al);border:1.5px solid var(--ac)}.bs:hover{background:rgba(59,130,246,.12)}
+.bg{background:transparent;color:var(--ts);border:1px solid var(--bc)}.bg:hover{color:var(--tp);border-color:var(--ac)}
+.bd{background:var(--er);color:#fff}.bd:hover{opacity:.85}
+.bt{background:linear-gradient(135deg,#5059c9,#7b83eb);color:#fff;width:100%;animation:pb 2.5s infinite;font-size:.82rem;font-weight:700}.bt:hover{opacity:.9}
+.bsm{padding:.4rem .78rem;font-size:.79rem}.bfw{width:100%}
+.nav{background:var(--surf);border-bottom:1px solid var(--bc);padding:.72rem 1.35rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;flex-shrink:0}
+.nbrand{font-size:.93rem;font-weight:800;color:var(--al);display:flex;align-items:center;gap:.42rem}
+.nbrand small{color:var(--tm);font-weight:400;font-size:.76rem}
+.nright{display:flex;align-items:center;gap:.52rem}
+.sbody{display:flex;flex:1;overflow:hidden}
+.fside{width:260px;min-width:240px;background:var(--surf);border-right:1px solid var(--bc);padding:.95rem .82rem;display:flex;flex-direction:column;gap:.75rem;overflow-y:auto;flex-shrink:0}
+.ftitle{font-size:.67rem;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.08em;padding-bottom:.38rem;border-bottom:1px solid var(--bc)}
+.acw{position:relative}
+.acdrop{position:absolute;top:calc(100% + 3px);left:0;right:0;background:var(--card);border:1.5px solid var(--ac);border-radius:.5rem;max-height:180px;overflow-y:auto;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.aci{padding:.46rem .72rem;cursor:pointer;font-size:.84rem;color:var(--tp);transition:background .12s}
+.aci:hover,.aci.on{background:rgba(59,130,246,.2);color:var(--al)}
+.ace{padding:.46rem .72rem;font-size:.78rem;color:var(--tm);font-style:italic}
+.rarea{flex:1;padding:1.15rem 1.35rem;overflow-y:auto;display:flex;flex-direction:column}
+.rhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem;flex-shrink:0}
+.rcnt{font-size:.79rem;color:var(--ts)}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:.88rem;flex:1}
+.sc{background:var(--card);border:1px solid var(--bc);border-left:4px solid var(--ac);border-radius:.78rem;padding:.98rem;display:flex;flex-direction:column;gap:.42rem;height:270px;overflow:hidden;transition:transform .2s,box-shadow .2s,background .2s;animation:fi .3s ease both}
+.sc:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4);background:var(--cardh)}
+.sc.tm{border-left-color:#22c55e}.sc.tt{border-left-color:#f59e0b}
+.csubj{font-size:.96rem;font-weight:700;color:var(--al);line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ctime{font-size:1.22rem;font-weight:800;color:var(--tp);display:flex;align-items:center;gap:.32rem}
+.cday{display:inline-block;background:rgba(59,130,246,.15);color:var(--al);border:1px solid rgba(59,130,246,.3);border-radius:.28rem;padding:.09rem .42rem;font-size:.68rem;font-weight:700}
+.casesor{font-size:.84rem;color:var(--ts);display:flex;align-items:center;gap:.28rem}
+.cplace{font-size:.74rem;color:var(--tm);display:flex;align-items:center;gap:.25rem}
+.tbadge{display:inline-block;border-radius:.28rem;padding:.07rem .4rem;font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.ta{background:rgba(59,130,246,.2);color:#60a5fa}.tm2{background:rgba(34,197,94,.2);color:#4ade80}.tt2{background:rgba(245,158,11,.2);color:#fbbf24}
+.pag{display:flex;align-items:center;justify-content:center;gap:.68rem;padding:1.05rem 0 .18rem;flex-shrink:0}
+.pinfo{font-size:.79rem;color:var(--ts);min-width:100px;text-align:center}
+.sbox{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 1rem;color:var(--tm);gap:.65rem;text-align:center;grid-column:1/-1}
+#tc{position:fixed;bottom:1.35rem;right:1.35rem;z-index:9999;display:flex;flex-direction:column;gap:.42rem;pointer-events:none}
+.toast{background:var(--card);border:1px solid var(--bc);border-radius:.58rem;padding:.62rem .9rem;font-size:.81rem;color:var(--tp);box-shadow:0 8px 24px rgba(0,0,0,.45);display:flex;align-items:center;gap:.42rem;animation:fi .3s ease;pointer-events:all;max-width:285px}
+.toast.ok{border-left:3px solid var(--ok)}.toast.er{border-left:3px solid var(--er)}.toast.inf{border-left:3px solid var(--ac)}
+@media(max-width:768px){.fside{width:100%;min-width:unset;position:static;border-right:none;border-bottom:1px solid var(--bc);display:none}.fside.open{display:flex}.sbody{flex-direction:column;overflow:visible}.rarea{overflow:visible}.rgrid{grid-template-columns:1fr}.mob{display:flex!important}}
+.mob{display:none}
+</style></head><body>
+<div id="tc"></div>
+
+<div id="view-login" class="view active">
+  <div class="lcard fi">
+    <div style="text-align:center;margin-bottom:1.65rem">
+      <div style="font-size:2.2rem;margin-bottom:.42rem">🎓</div>
+      <h1 style="font-size:1.15rem;font-weight:800;color:var(--al);margin-bottom:.25rem">Asesoría Disciplinar</h1>
+      <p style="font-size:.81rem;color:var(--ts)">Mentoría Académica &middot; FI UAEMex</p>
+    </div>
+    <div class="fg">
+      <label class="flbl" for="inp-cuenta">Número de Cuenta</label>
+      <input class="finp" id="inp-cuenta" type="text" inputmode="numeric" maxlength="7" placeholder="Ej. 1234567" autocomplete="off" onkeydown="if(event.key==='Enter')AuthModule.loginAlumno()"/>
+      <span class="ferr hidden" id="err-cuenta"></span>
+    </div>
+    <button class="btn bp bfw" onclick="AuthModule.loginAlumno()">Ingresar</button>
+    <p style="font-size:.69rem;color:var(--tm);text-align:center;margin-top:1.15rem">Universidad Autónoma del Estado de México</p>
+  </div>
+</div>
+
+
+<div id="view-student" class="view">
+  <nav class="nav">
+    <div class="nbrand">🎓 Asesorías &amp; Mentorías <small>FI UAEMex</small></div>
+    <div class="nright">
+      <button class="btn bg bsm mob" onclick="UIModule.toggleMobileFilter()">☰ Filtros</button>
+      <button class="btn bg bsm" onclick="AuthModule.logout()">Salir</button>
+    </div>
+  </nav>
+  <div class="sbody">
+    <aside class="fside" id="filter-sidebar">
+      <div class="ftitle">🔍 Filtros de búsqueda</div>
+      <div class="fg" style="margin-bottom:0">
+        <label class="flbl">Materia</label>
+        <div class="acw">
+          <input class="finp" id="filter-materia-input" type="text" placeholder="Buscar materia..." autocomplete="off"
+            oninput="FilterModule.onMateriaInput(this.value)"
+            onfocus="FilterModule.onMateriaFocus()"
+            onblur="setTimeout(()=>FilterModule.closeMateriaDropdown(),200)"/>
+          <div class="acdrop hidden" id="materia-dropdown"></div>
+        </div>
+        <input type="hidden" id="filter-materia-value"/>
+      </div>
+      <div class="fg" style="margin-bottom:0">
+        <label class="flbl">Día</label>
+        <select class="finp" id="filter-dia">
+          <option value="">Todos los días</option>
+          <option>Lunes</option><option>Martes</option><option>Miércoles</option>
+          <option>Jueves</option><option>Viernes</option><option>Sábado</option>
+        </select>
+      </div>
+      <div class="fg" style="margin-bottom:0">
+        <label class="flbl">Hora (disponible desde)</label>
+        <select class="finp" id="filter-hora"><option value="">Cualquier hora</option></select>
+      </div>
+      <div class="fg" style="margin-bottom:0">
+        <label class="flbl">Nombre del asesor</label>
+        <div class="acw">
+          <input class="finp" id="filter-asesor" type="text" placeholder="Buscar por nombre..." autocomplete="off"
+            oninput="FilterModule.onAsesorInput(this.value)"
+            onfocus="FilterModule.onAsesorFocus()"
+            onblur="setTimeout(()=>FilterModule.closeAsesorDropdown(),200)"/>
+          <div class="acdrop hidden" id="asesor-dropdown"></div>
+        </div>
+      </div>
+      <div class="fg" style="margin-bottom:0">
+        <label class="flbl">Tipo</label>
+        <select class="finp" id="filter-tipo">
+          <option value="">Todos los tipos</option>
+          <option value="asesoria">Asesoría</option>
+          <option value="mentoria">Mentoría</option>
+          <option value="tutoria">Tutoría</option>
+        </select>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.42rem;margin-top:.18rem">
+        <button class="btn bp" onclick="FilterModule.applyFilters()">🔍 Buscar</button>
+        <button class="btn bg" onclick="FilterModule.clearFilters()">✕ Limpiar filtros</button>
+      </div>
+    </aside>
+    <main class="rarea">
+      <div class="rhdr">
+        <span class="rcnt" id="results-count">Usa los filtros para buscar horarios</span>
+        <button class="btn bg bsm" onclick="FilterModule.applyFilters()" title="Actualizar">↻</button>
+      </div>
+      <div class="rgrid" id="results-grid">
+        <div class="sbox"><p style="font-size:.88rem">Selecciona filtros y presiona <strong>Buscar</strong></p></div>
+      </div>
+      <div class="pag hidden" id="pagination">
+        <button class="btn bg bsm" id="btn-prev" onclick="PaginationModule.prev()">← Anterior</button>
+        <span class="pinfo" id="page-info">Página 1 de 1</span>
+        <button class="btn bg bsm" id="btn-next" onclick="PaginationModule.next()">Siguiente →</button>
+      </div>
+    </main>
+  </div>
+</div>
+<script>
+
+const $ = id => document.getElementById(id);
+const show = id => { const el=$(id); if(el) el.classList.remove('hidden'); };
+const hide = id => { const el=$(id); if(el) el.classList.add('hidden'); };
+const showEl = el => el && el.classList.remove('hidden');
+const hideEl = el => el && el.classList.add('hidden');
+
+
+function parseCSV(text) {
+  const lines = text.trim().split(/\r?\n/);
+  if (!lines.length) return [];
+  const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/[^a-z0-9_]/g,'_'));
+  return lines.slice(1).filter(l => l.trim()).map(line => {
+    const vals = []; let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      if (line[i] === '"') { inQ = !inQ; }
+      else if (line[i] === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+      else cur += line[i];
+    }
+    vals.push(cur.trim());
+    const obj = {};
+    headers.forEach((h,i) => obj[h] = (vals[i]||'').replace(/^"|"$/g,''));
+    return obj;
+  });
+}
+
+
+function genTimeSlots() {
+  const slots = [];
+  for (let h = 7; h <= 20; h++) {
+    slots.push(String(h).padStart(2,'0') + ':00');
+    if (h < 20) slots.push(String(h).padStart(2,'0') + ':30');
+  }
+  slots.push('20:30');
+  return slots;
+}
+
+
+function timeLte(a, b) { return a <= b; }
+function timeLt(a, b)  { return a < b; }
+
+
+const LogsModule = (() => {
+  const SK = 'search_logs', CK = 'contact_logs', MAX = 100;
+  const save = (key, entry) => {
+    try {
+      const arr = JSON.parse(localStorage.getItem(key)||'[]');
+      arr.push({...entry, timestamp: new Date().toISOString()});
+      if (arr.length > MAX) arr.splice(0, arr.length - MAX);
+      localStorage.setItem(key, JSON.stringify(arr));
+    } catch(e) {}
+  };
+  return {
+    logSearch: (filters, count) => save(SK, {filters, count}),
+    logContact: (name, email) => save(CK, {asesor: name, email}),
+    getSearchLogs: () => { try { return JSON.parse(localStorage.getItem(SK)||'[]'); } catch(e){ return []; } },
+    getContactLogs: () => { try { return JSON.parse(localStorage.getItem(CK)||'[]'); } catch(e){ return []; } }
+  };
+})();
+
+
+const DataModule = (() => {
+  let schedules = [];
+  let materias = [];
+  const BASE = './data/';
+
+  const fetchText = async url => {
+    const r = await fetch(url + '?t=' + Date.now());
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.text();
+  };
+
+  const loadSchedules = async () => {
+
+    try {
+      const r = await fetch(BASE + 'schedules.json?t=' + Date.now());
+      if (r.ok) { schedules = await r.json(); return schedules; }
+    } catch(e) {}
+    
+    try {
+      const text = await fetchText(BASE + 'schedules.csv');
+      const rows = parseCSV(text);
+      schedules = rows.map((r,i) => ({
+        id: r.id || 'sch_' + i,
+        owner_name: r.owner_name || r.nombre || r.asesor || '',
+        email: r.email || r.correo || '',
+        type: (r.type || r.tipo || 'asesoria').toLowerCase(),
+        day: r.day || r.dia || '',
+        start: r.start || r.inicio || r.hora_inicio || '',
+        end: r.end || r.fin || r.hora_fin || '',
+        subjects: (r.subjects || r.materias || r.materia || '').split(/[;|,]/).map(s=>s.trim()).filter(Boolean),
+        place: r.place || r.lugar || ''
+      })).filter(s => s.owner_name && s.day && s.start && s.end);
+      return schedules;
+    } catch(e) {}
+    schedules = [];
+    return schedules;
+  };
+
+  const loadMaterias = async () => {
+    try {
+      const text = await fetchText(BASE + 'materias.csv');
+      const rows = parseCSV(text);
+      materias = rows.map(r => r.materia || Object.values(r)[0] || '').filter(Boolean);
+      return materias;
+    } catch(e) {}
+  
+    const set = new Set();
+    schedules.forEach(s => s.subjects.forEach(m => set.add(m)));
+    materias = [...set].sort();
+    return materias;
+  };
+
+  const loadAllowlist = async type => {
+    try {
+      const text = await fetchText(BASE + 'allowlist_' + type + '.csv');
+      const rows = parseCSV(text);
+      return rows.map(r => Object.values(r)[0] || '').filter(Boolean);
+    } catch(e) { return []; }
+  };
+
+  return {
+    loadSchedules, loadMaterias, loadAllowlist,
+    getSchedules: () => schedules,
+    getMaterias: () => materias,
+    setSchedules: s => { schedules = s; }
+  };
+})();
+
+
+const AuthModule = (() => {
+  let role = null, user = null;
+
+  const showErr = (id, msg) => {
+    const el = $(id);
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.remove('hidden');
+  };
+
+  const hideErr = id => {
+    const el = $(id);
+    if (el) {
+      el.textContent = '';
+      el.classList.add('hidden');
+    }
+  };
+
+  const loginAlumno = async () => {
+    const val = ($('inp-cuenta').value || '').trim();
+    hideErr('err-cuenta');
+
+    if (!/^\d{7}$/.test(val)) {
+      showErr('err-cuenta', 'El número de cuenta debe tener exactamente 7 dígitos.');
+      return;
+    }
+
+    let list = [];
+    try { list = await DataModule.loadAllowlist('alumnos'); } catch(e) {}
+
+    if (!list.length) {
+      showErr('err-cuenta', 'No se pudo verificar el número de cuenta. Contacta al administrador.');
+      return;
+    }
+
+    if (!list.includes(val)) {
+      showErr('err-cuenta', 'Número de cuenta no registrado en el sistema.');
+      return;
+    }
+
+    user = val;
+    role = 'alumno';
+    UIModule.showView('student');
+    await DataModule.loadSchedules();
+    await DataModule.loadMaterias();
+    UIModule.populateTimeSlots();
+    UIModule.populateMaterias();
+  };
+
+  const logout = () => {
+    role = null;
+    user = null;
+    $('inp-cuenta').value = '';
+    hideErr('err-cuenta');
+    FilterModule.clearFilters();
+    UIModule.showView('login');
+  };
+
+  return { loginAlumno, logout, getRole: () => role, getUser: () => user };
+})();
+
+
+const FilterModule = (() => {
+  let filtered = [];
+  let materiaSelected = '';
+
+  
+  const normalize = str =>
+    (str||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+
+  
+  const escRe = s => s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+
+  const getFilters = () => ({
+    materia: $('filter-materia-value').value.trim(),
+    dia:     $('filter-dia').value.trim(),
+    hora:    $('filter-hora').value.trim(),
+    asesor:  ($('filter-asesor').value||'').trim(),
+    tipo:    $('filter-tipo').value.trim()
+  });
+
+  const applyFilters = () => {
+    const f = getFilters();
+    const nAsesor  = normalize(f.asesor);
+    const nMateria = normalize(f.materia);
+    const todayISO = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+    const all = DataModule.getSchedules();
+    filtered = all.filter(s => {
+  
+      if (/^\d{4}-\d{2}-\d{2}$/.test(s.day) && s.day < todayISO) return false;
+      if (f.materia) {
+        if (!s.subjects.some(sub => normalize(sub).includes(nMateria))) return false;
+      }
+      if (f.dia) {
+        const DAYS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+        let dayName;
+        if (/^\d{4}-\d{2}-\d{2}$/.test(s.day)) {
+          const [y,mo,d] = s.day.split('-').map(Number);
+          dayName = DAYS[new Date(y, mo-1, d).getDay()];
+        } else {
+          dayName = s.day;
+        }
+        if (dayName.toLowerCase() !== f.dia.toLowerCase()) return false;
+      }
+      if (f.hora) {
+        if (!(timeLte(s.start, f.hora) && timeLt(f.hora, s.end))) return false;
+      }
+      if (f.asesor && !normalize(s.owner_name).includes(nAsesor)) return false;
+      if (f.tipo && s.type !== f.tipo) return false;
+      return true;
+    });
+    LogsModule.logSearch(f, filtered.length);
+    PaginationModule.setData(filtered);
+    UIModule.renderResults();
+  };
+
+  const clearFilters = () => {
+    $('filter-materia-input').value = '';
+    $('filter-materia-value').value = '';
+    $('filter-dia').value = '';
+    $('filter-hora').value = '';
+    $('filter-asesor').value = '';
+    $('filter-tipo').value = '';
+    materiaSelected = '';
+    closeMateriaDropdown();
+    closeAsesorDropdown();
+    filtered = [];
+    PaginationModule.setData([]);
+    $('results-count').textContent = 'Usa los filtros para buscar horarios';
+    $('results-grid').innerHTML = '<div class="sbox"><p style="font-size:.88rem">Selecciona filtros y presiona <strong>Buscar</strong></p></div>';
+    hide('pagination');
+  };
+
+  
+  const onMateriaInput = val => {
+    $('filter-materia-value').value = val;
+    materiaSelected = val;
+    renderMateriaDropdown(val);
+  };
+
+  const onMateriaFocus = () => renderMateriaDropdown($('filter-materia-input').value);
+
+  const renderMateriaDropdown = query => {
+    const drop = $('materia-dropdown');
+    const mats = DataModule.getMaterias();
+    const q = normalize(query);
+    const matches = q ? mats.filter(m => normalize(m).includes(q)) : mats;
+    if (!matches.length) {
+      drop.innerHTML = '<div class="ace">Sin resultados</div>';
+      showEl(drop);
+      return;
+    }
+    drop.innerHTML = matches.slice(0,20).map(m => {
+     
+      const nM = normalize(m);
+      const idx = q ? nM.indexOf(q) : -1;
+      let highlighted = m;
+      if (idx !== -1) {
+        highlighted = m.substring(0, idx) +
+          '<strong>' + m.substring(idx, idx + q.length) + '</strong>' +
+          m.substring(idx + q.length);
+      }
+      return `<div class="aci" onmousedown="FilterModule.selectMateria('${m.replace(/'/g,"\\'")}')">
+        ${highlighted}
+      </div>`;
+    }).join('');
+    showEl(drop);
+  };
+
+  const selectMateria = m => {
+    $('filter-materia-input').value = m;
+    $('filter-materia-value').value = m;
+    materiaSelected = m;
+    closeMateriaDropdown();
+  };
+
+  const closeMateriaDropdown = () => hideEl($('materia-dropdown'));
+
+
+  const onAsesorInput = val => {
+    renderAsesorDropdown(val);
+  };
+
+  const onAsesorFocus = () => renderAsesorDropdown($('filter-asesor').value);
+
+  const renderAsesorDropdown = query => {
+    const drop = $('asesor-dropdown');
+    if (!drop) return;
+    const q = normalize(query);
+    
+    const names = [...new Set(DataModule.getSchedules().map(s => s.owner_name))].sort();
+    const matches = q ? names.filter(n => normalize(n).includes(q)) : names;
+    if (!matches.length) {
+      drop.innerHTML = '<div class="ace">Sin coincidencias</div>';
+      showEl(drop);
+      return;
+    }
+    drop.innerHTML = matches.slice(0,15).map(n => {
+    
+      const nName = normalize(n);
+      let label = n;
+      if (q) {
+        const idx = nName.indexOf(q);
+        if (idx !== -1) {
+          label = n.substring(0, idx) +
+            '<strong>' + n.substring(idx, idx + q.length) + '</strong>' +
+            n.substring(idx + q.length);
+        }
+      }
+      return `<div class="aci" onmousedown="FilterModule.selectAsesor('${n.replace(/'/g,"\\'")}')">
+        ${label}
+      </div>`;
+    }).join('');
+    showEl(drop);
+  };
+
+  const selectAsesor = name => {
+    const inp = $('filter-asesor');
+    if (inp) inp.value = name;
+    closeAsesorDropdown();
+  };
+
+  const closeAsesorDropdown = () => hideEl($('asesor-dropdown'));
+
+  return {
+    applyFilters, clearFilters,
+    onMateriaInput, onMateriaFocus, closeMateriaDropdown, selectMateria,
+    onAsesorInput,  onAsesorFocus,  closeAsesorDropdown,  selectAsesor,
+    getFiltered: () => filtered
+  };
+})();
+</script>
+<script>
+
+const PaginationModule = (() => {
+  let perPage = 8;
+  let data = [], page = 1;
+
+  const calcPerPage = () => {
+    const rarea = document.querySelector('.rarea');
+    if (!rarea) return 8;
+    const w = rarea.clientWidth  - 44;  
+    const h = rarea.clientHeight - 90;   
+    const cols = Math.max(1, Math.floor(w / 279));  
+    const rows = Math.max(1, Math.floor(h / 284));  
+    return Math.max(4, cols * rows);
+  };
+
+  const setData = d => { perPage = calcPerPage(); data = d; page = 1; };
+  const total   = () => Math.ceil(data.length / perPage);
+  const getPage = () => data.slice((page-1)*perPage, page*perPage);
+
+  const prev = () => {
+    if (page > 1) { page--; UIModule.renderResults(); }
+  };
+  const next = () => {
+    if (page < total()) { page++; UIModule.renderResults(); }
+  };
+
+  const updateControls = () => {
+    const t = total();
+    if (data.length === 0) { hide('pagination'); return; }
+    show('pagination');
+    $('page-info').textContent = 'Página ' + page + ' de ' + (t||1);
+    $('btn-prev').disabled = page <= 1;
+    $('btn-next').disabled = page >= t;
+  };
+
+  return { setData, getPage, total, prev, next, updateControls, getPage };
+})();
+
+
+const UIModule = (() => {
+  const VIEWS = ['login','student'];
+
+  const showView = name => {
+    VIEWS.forEach(v => {
+      const el = $('view-' + v);
+      if (el) el.classList.toggle('active', v === name);
+    });
+  };
+
+  const toggleMobileFilter = () => {
+    $('filter-sidebar').classList.toggle('open');
+  };
+
+  const populateTimeSlots = () => {
+    const sel = $('filter-hora');
+    const slots = genTimeSlots();
+    sel.innerHTML = '<option value="">Cualquier hora</option>' +
+      slots.map(s => `<option value="${s}">${s}</option>`).join('');
+  };
+
+  const populateMaterias = () => {
+  };
+
+  const typeBadge = type => {
+    const map = {asesoria:'ta',mentoria:'tm2',tutorial:'tt2'};
+    const labels = {asesoria:'Asesoría',mentoria:'Mentoría',tutorial:'Tutoría'};
+    return `<span class="tbadge ${map[type]||'ta'}">${labels[type]||type}</span>`;
+  };
+
+  const renderCard = s => {
+    const typeClass = s.type==='mentoria'?'tm':s.type==='tutorial'?'tt':'';
+    const subjectsText = s.subjects.length ? s.subjects.join(' · ') : 'Sin materia';
+    const isISODate = /^\d{4}-\d{2}-\d{2}$/.test(s.day);
+    const fmtDay = isISODate ? s.day.split('-').reverse().join('/') : s.day;
+    const DAYS_FULL = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+    let dayLabel;
+    if (isISODate) {
+      const [y,m,d] = s.day.split('-').map(Number);
+      dayLabel = DAYS_FULL[new Date(y, m-1, d).getDay()];
+    } else {
+      dayLabel = s.day;
+    }
+    return `<div class="sc ${typeClass}">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:.4rem">
+        <span class="cday">${dayLabel}</span>
+        ${typeBadge(s.type)}
+      </div>
+      <div class="csubj">${subjectsText}</div>
+      <div class="ctime">
+        <svg width="16" height="16" fill="none" stroke="var(--ac)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        ${s.start} &ndash; ${s.end}
+      </div>
+      <div class="casesor">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        ${s.owner_name}
+      </div>
+      ${s.place ? `<div class="cplace"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${s.place}</div>` : ''}
+      ${isISODate ? `<div class="cplace">📅 ${fmtDay}</div>` : ''}
+      <button class="btn bt" style="margin-top:auto;flex-shrink:0" onclick="UIModule.contactTeams('${s.email.replace(/'/g,"\\'")}','${s.owner_name.replace(/'/g,"\\'")}')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 3h-15A1.5 1.5 0 0 0 3 4.5v15A1.5 1.5 0 0 0 4.5 21h15a1.5 1.5 0 0 0 1.5-1.5v-15A1.5 1.5 0 0 0 19.5 3zm-7 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg>
+        Contactar por Teams
+      </button>
+    </div>`;
+  };
+
+  const renderResults = () => {
+    const grid = $('results-grid');
+    const page = PaginationModule.getPage();
+    const filtered = FilterModule.getFiltered();
+
+    $('results-count').textContent = filtered.length
+      ? filtered.length + ' resultado' + (filtered.length!==1?'s':'') + ' encontrado' + (filtered.length!==1?'s':'')
+      : 'Sin resultados para los filtros seleccionados';
+
+    if (!filtered.length) {
+      grid.innerHTML = `<div class="sbox">
+        <svg width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="opacity:.3"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <p style="font-size:.88rem">Sin resultados. Intenta con otros filtros.</p>
+      </div>`;
+      hide('pagination');
+      return;
+    }
+
+    grid.innerHTML = page.map(renderCard).join('');
+    PaginationModule.updateControls();
+  };
+
+  const contactTeams = (email, name) => {
+  if (!email) { 
+    toast('Este asesor no tiene correo registrado.','er'); 
+    return; 
+  }
+
+  
+  const mensaje = `Hola, ${name}. Me gustaría solicitar una sesión de "asesoría".`;
+  /* Hola, nombre. Me comunicoporque estoy interesado/a en recibir asesoría. Quedo al pendiente de sus indicaciones para llevar a cabo la sesión.- mentoría es lo mismo, pero se habla de tú. */
+  /* Hola, nombre. Me comunico para  solicitar apoyo de tutoría académica y/o firmar los formatos correspondientes. Queso al pendiente de sus indicaciones.  */
+  const url = 'https://teams.microsoft.com/l/chat/0/0?users=' 
+    + encodeURIComponent(email) 
+    + '&message=' 
+    + encodeURIComponent(mensaje);
+
+  window.open(url, '_blank', 'noopener');
+  LogsModule.logContact(name, email);
+  toast('Abriendo Teams para contactar a ' + name,'ok');
+};
+
+  let toastTimer = null;
+  const toast = (msg, type='inf') => {
+    const tc = $('tc');
+    const el = document.createElement('div');
+    el.className = 'toast ' + type;
+    const icons = {ok:'✅',er:'⚠️',inf:'ℹ️'};
+    el.innerHTML = `<span>${icons[type]||''}</span><span>${msg}</span>`;
+    tc.appendChild(el);
+    setTimeout(() => { el.style.opacity='0'; el.style.transition='opacity .4s'; setTimeout(()=>el.remove(),400); }, 3500);
+  };
+
+  return { showView, toggleMobileFilter, populateTimeSlots, populateMaterias, renderResults, contactTeams, toast };
+})();
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  ['filter-dia','filter-hora','filter-tipo'].forEach(id => {
+    const el = $(id);
+    if (el) el.addEventListener('keydown', e => { if(e.key==='Enter') FilterModule.applyFilters(); });
+  });
+  const fa = $('filter-asesor');
+  if (fa) fa.addEventListener('keydown', e => { if(e.key==='Enter') FilterModule.applyFilters(); });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.acw')) {
+      FilterModule.closeMateriaDropdown();
+      FilterModule.closeAsesorDropdown();
+    }
+  });
+
+ 
+  let _resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(_resizeTimer);
+    _resizeTimer = setTimeout(() => {
+      const filtered = FilterModule.getFiltered();
+      if (filtered.length) {
+        PaginationModule.setData(filtered);
+        UIModule.renderResults();
+      }
+    }, 250);
+  });
+});
+</script>
+</body></html>

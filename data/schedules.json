@@ -1,0 +1,15 @@
+[
+  {
+    "id": "sch_001",
+    "owner_name": "juan antonio",
+    "email": "jaranam002@alumno.uaemex.mx",
+    "type": "asesoria",
+    "day": "2026-05-29",
+    "start": "12:30",
+    "end": "13:00",
+    "subjects": [
+      "calculo 1"
+    ],
+    "place": ""
+  }
+]

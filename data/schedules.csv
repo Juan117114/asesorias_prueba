@@ -1,0 +1,33 @@
+id,owner_name,email,type,day,start,end,subjects,place
+sch_026,Sebastián Martínez Galicia,imartinezg006@alumno.uaemex.mx,mentoria,2026-05-12,14:30,18:00,Cálculo I,Sala 2
+sch_101,Alejandro Hernández Arriaga,ahernandez@profesor.uaemex.mx,asesoria,2026-03-16,09:00,11:00,Seguridad De La Información,LAB-RED
+sch_102,Carol Leyva Peláez,cleyva@profesor.uaemex.mx,asesoria,2026-03-18,11:00,13:00,Bases De Datos I,Sala De Cómputo 2
+sch_103,Elfego Gutiérrez Ocampo,egutierrez@profesor.uaemex.mx,asesoria,2026-03-20,07:00,09:00,Programación I,Sala De Cómputo 1
+sch_104,Guadalupe Rodríguez Camacho,grodriguez@profesor.uaemex.mx,asesoria,2026-04-02,09:00,11:00,Arquitectura De Computadoras,Sala 5
+sch_105,Héctor Torres Aguilar,htorres@profesor.uaemex.mx,asesoria,2026-04-10,10:00,12:00,Sistemas Operativos,Sala De Cómputo 3
+sch_106,José Antonio Hernández Servín,jhernandez@profesor.uaemex.mx,asesoria,2026-04-22,11:00,13:00,Graficación Computacional,LAB-IHM
+sch_107,Luis Enrique Ledezma Fuentes,lledezma@profesor.uaemex.mx,asesoria,2026-05-05,16:30,18:30,Inteligencia Artificial,Sala 7
+sch_108,Marcelo Romero Huertas,mromero@profesor.uaemex.mx,asesoria,2026-05-19,15:00,17:00,Métodos Estadísticos,C-303
+sch_109,Marco Antonio Ramos Corchado,mramos@profesor.uaemex.mx,asesoria,2026-06-03,11:00,13:00,Inteligencia Artificial,C-404
+sch_110,Mónica Marina Mondragón Ixtlahuac,mmondragon@profesor.uaemex.mx,asesoria,2026-06-15,11:00,13:00,Investigación De Operaciones,C-406
+sch_111,Natalia Cecilia Munguía Cedillo,nmunguia@profesor.uaemex.mx,mentoria,2026-07-02,13:00,15:00,Comunicación Y Relaciones Humanas,C-303
+sch_112,Pablo Salas Castillo,psalas@profesor.uaemex.mx,asesoria,2026-08-18,09:00,11:00,Bases De Datos II,LAB-PARALELO
+sch_113,Rosenda Ivett Vilchis Torres,rvilchis@profesor.uaemex.mx,mentoria,2026-09-10,11:00,13:00,Administración De Proyectos Informáticos,C-402
+sch_114,Silvia Edith Albarrán Trujillo,salbarran@profesor.uaemex.mx,asesoria,2026-10-06,09:00,11:00,Ingeniería De Software I,LAB-PARALELO
+sch_115,Víctor Manuel Montaño Serrano,vmontano@profesor.uaemex.mx,asesoria,2026-11-12,07:00,09:00,Robótica,LAB-ROBOTICA
+sch_116,Vianney Muñoz Jiménez,vmunoz@profesor.uaemex.mx,asesoria,2026-12-03,09:00,11:00,Procesamiento De Imágenes Digitales,C-404
+sch_201,Alejandro Ortiz Pérez,aortiz@profesor.uaemex.mx,asesoria,2026-03-17,09:00,11:00,Álgebra Lineal,SALON-PROPE-1
+sch_202,Ana Elisa Alcántara Valladolid,aalcantara@profesor.uaemex.mx,mentoria,2026-03-19,11:00,13:00,Comunicación Oral y Escrita,SALON-PROPE-2
+sch_203,Andrea Robles Cruz,arobles@profesor.uaemex.mx,asesoria,2026-03-23,08:00,10:00,Trigonometría,SALON-PROPE-3
+sch_204,Andrés Cancín Victoriano,acancin@profesor.uaemex.mx,asesoria,2026-04-07,10:00,12:00,Geometría Analítica,SALON-PROPE-4
+sch_205,Araceli Consuelo Campero Carmona,acampero@profesor.uaemex.mx,mentoria,2026-04-15,12:00,14:00,Expresión Oral y Escrita,SALON-PROPE-5
+sch_206,Armando Herrera Barrera,aherrera@profesor.uaemex.mx,asesoria,2026-05-06,07:00,09:00,Cálculo I,SALON-PROPE-6
+sch_207,Augusto Eduardo Netzahualpilli Coyoli Lazcano,anetza@profesor.uaemex.mx,asesoria,2026-05-21,09:00,11:00,Cálculo II,SALON-PROPE-7
+sch_208,Aurora Diana Guzmán Coria,aguzman@profesor.uaemex.mx,mentoria,2026-06-04,13:00,15:00,Metodología de la Investigación,SALON-PROPE-2
+sch_209,Bernardo Juárez González,bjuarez@profesor.uaemex.mx,asesoria,2026-06-18,10:00,12:00,Probabilidad y Estadística,SALON-PROPE-8
+sch_210,Brenda Pichardo Lewestein,bpichardo@profesor.uaemex.mx,asesoria,2026-07-09,11:00,13:00,Química General,LAB-QUIMICA
+sch_211,Carlos Alberto González García,cgonzalez@profesor.uaemex.mx,asesoria,2026-08-12,08:00,10:00,Programación Básica,SALA-COMPUTO-1
+sch_212,Carlos Daniel Vargas Hernández,cvargas@profesor.uaemex.mx,mentoria,2026-09-03,12:00,14:00,Introducción a la Ingeniería,SALON-PROPE-3
+sch_213,Carlos Eduardo Díaz Martínez,cdiaz@profesor.uaemex.mx,asesoria,2026-10-14,09:00,11:00,Ecuaciones Diferenciales,SALON-PROPE-4
+sch_214,Carmen Patricia Hernández López,chernandez@profesor.uaemex.mx,tutoria,2026-11-05,11:00,13:00,Epistemología,SALON-PROPE-5
+sch_215,César Augusto Flores Torres,cflores@profesor.uaemex.mx,tutoria,2026-12-10,08:00,10:00,Estática,SALON-PROPE-6
